@@ -1,0 +1,11 @@
+{
+  "name": "lovelace-energy-distribution-homey-card",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.0",
+    "lit": "^3.5.0"
+  }
+}
