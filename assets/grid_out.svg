@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1224 1584" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:10;">
+    <g id="Seite-1" serif:id="Seite 1" transform="matrix(2,0,0,2,0,0)">
+        <rect x="0" y="0" width="612" height="792" style="fill:none;"/>
+        <g transform="matrix(1,0,0,1,384.2918,496.0289)">
+            <g id="powerline-outside" serif:id="powerline outside">
+                <path d="M0,-71.231L17.88,-74.445C17.88,-74.445 22.962,-73.504 23.244,-67.198C23.527,-60.893 24.709,-25.002 24.709,-25.002C24.709,-25.002 26.915,-21.081 30.303,-19.669C32.292,-18.84 50.535,-11.004 65.26,-4.674C71.14,-2.147 76.46,0.141 79.959,1.646C82.753,2.847 85.828,3.214 88.827,2.707L177.708,-12.328" style="fill:none;fill-rule:nonzero;stroke-width:5px;"/>
+            </g>
+        </g>
+    </g>
+</svg>
