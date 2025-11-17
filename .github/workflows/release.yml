@@ -24,8 +24,11 @@ jobs:
       - name: 📦 Create Release and Upload power-flow-card.js
         uses: softprops/action-gh-release@v2
         with:
-          # The tag name (e.g., v1.0.0) is used as the release name automatically.
-          # The release notes can be generated from your commit messages, 
-          # but for HACS, attaching the file is the key requirement.
+          # Hardcode the tag name for testing purposes.
+          tag_name: v1
+          # If you want to force it to always be a draft:
+          draft: true 
+          # You can also set a name for the release (optional)
+          name: Release v1 - Test
           files: |
             power-flow-card.js
