@@ -34,12 +34,7 @@ jobs:
         
       - name: Run Lint Check (and Fix) # <--- If you accidentally duplicated the name
         run: npm run lint
-
-      # --- BUILD STEP (if your card needs bundling, e.g., with Webpack/Rollup) ---
-      # If your card is just a single JS file, you might skip this step.
-      - name: Build Card (if applicable)
-        run: npm run build
-        
+  
       # --- CREATE GITHUB RELEASE ---
       - name: Create GitHub Release
         id: create_release
