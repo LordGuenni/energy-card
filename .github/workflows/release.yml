@@ -1,8 +1,10 @@
 name: Release Custom Card
 
 on:
-  # Triggers the workflow when a new tag is pushed (e.g., git push --tags)
   push:
+    branches:
+      - main
+      - master
 
 jobs:
   release:
