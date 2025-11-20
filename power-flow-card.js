@@ -361,3 +361,93 @@ class PowerFlowCard extends LitElement {
 }
 
 customElements.define("power-flow-card", PowerFlowCard);
+
+// Minimal Lovelace visual editor for the card
+class PowerFlowCardEditor extends HTMLElement {
+  constructor() {
+    super();
+    this._config = {};
+    this.attachShadow({ mode: "open" });
+  }
+
+  setConfig(config) {
+    this._config = config || {};
+    this.render();
+  }
+
+  render() {
+    const c = this._config;
+    const ent = (k) => (c.entities && c.entities[k]) || "";
+
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host { display:block; font-family: Roboto, Arial, sans-serif; }
+        .row { margin:8px 0; }
+        label { display:block; font-size:13px; color:var(--primary-text-color,#222); margin-bottom:4px; }
+        input { width:100%; box-sizing:border-box; padding:6px 8px; font-size:14px; }
+      </style>
+      <div>
+        <div class="row">
+          <label>Name</label>
+          <input id="name" value="${c.name || ""}" />
+        </div>
+        <div class="row">
+          <label>Solar power entity</label>
+          <input id="solar_power" value="${ent("solar_power")}" placeholder="sensor.solar_power" />
+        </div>
+        <div class="row">
+          <label>Grid import entity</label>
+          <input id="grid_import_power" value="${ent("grid_import_power")}" placeholder="sensor.grid_import" />
+        </div>
+        <div class="row">
+          <label>Grid export entity</label>
+          <input id="grid_export_power" value="${ent("grid_export_power")}" placeholder="sensor.grid_export" />
+        </div>
+        <div class="row">
+          <label>EV charge entity</label>
+          <input id="ev_charge_power" value="${ent("ev_charge_power")}" placeholder="sensor.ev_charge" />
+        </div>
+        <div class="row">
+          <label>Battery charge entity</label>
+          <input id="battery_charge_power" value="${ent("battery_charge_power")}" placeholder="sensor.bat_charge" />
+        </div>
+        <div class="row">
+          <label>Battery discharge entity</label>
+          <input id="battery_discharge_power" value="${ent("battery_discharge_power")}" placeholder="sensor.bat_discharge" />
+        </div>
+      </div>
+    `;
+
+    // attach listeners
+    Array.from(this.shadowRoot.querySelectorAll("input")).forEach((el) => {
+      el.addEventListener("change", () => this._valueChanged());
+      el.addEventListener("blur", () => this._valueChanged());
+    });
+  }
+
+  _valueChanged() {
+    const name = this.shadowRoot.getElementById("name").value;
+    const entities = {
+      solar_power: this.shadowRoot.getElementById("solar_power").value,
+      grid_import_power: this.shadowRoot.getElementById("grid_import_power").value,
+      grid_export_power: this.shadowRoot.getElementById("grid_export_power").value,
+      ev_charge_power: this.shadowRoot.getElementById("ev_charge_power").value,
+      battery_charge_power: this.shadowRoot.getElementById("battery_charge_power").value,
+      battery_discharge_power: this.shadowRoot.getElementById("battery_discharge_power").value,
+    };
+
+    const newConfig = { ...this._config, name, entities };
+
+    this.dispatchEvent(
+      new CustomEvent("config-changed", {
+        detail: { config: newConfig },
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
+}
+
+if (!customElements.get("power-flow-card-editor")) {
+  customElements.define("power-flow-card-editor", PowerFlowCardEditor);
+}
